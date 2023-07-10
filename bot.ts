@@ -9,7 +9,9 @@ bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.on('message::url', async (ctx) => {
   const links = linkifyJS.find(ctx.message.text).map((link: {href: string}) => link.href)
  
-  const url = await getVideoURL(links[0])
+  const data = await getVideoURL(links[0])
+  const url = data?.url
+  if(!url) return 
 
   return ctx.reply(`You sent a url: ${JSON.stringify(url)}`);
 });
