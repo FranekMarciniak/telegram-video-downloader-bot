@@ -8,7 +8,8 @@ bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 
 bot.on('message::url', async (ctx) => {
   const links = linkifyJS.find(ctx.message.text).map((link: {href: string}) => link.href)
- 
+
+  if(!links[0].includes("instagram.com/reel")) return
   const data = await getVideoURL(links[0])
   const url = data?.data?.url
   if(!url) return 
