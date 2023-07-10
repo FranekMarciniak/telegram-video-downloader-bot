@@ -1,5 +1,6 @@
 import { Bot } from "./deps.deno.ts";
 import * as linkifyJS from "https://cdn.skypack.dev/linkifyjs?dts";
+import axiod from "https://deno.land/x/axiod/mod.ts";
 
 export const bot = new Bot(Deno.env.get("BOT_TOKEN") || "");
 
@@ -15,15 +16,5 @@ bot.on('message::url', async (ctx) => {
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()} ${Date.now()}`));
 
 const getVideoURL = (url: string) => {
-  return fetch(Deno.env.get("DOWNLOAD_URL"), {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      },
-      body: JSON.stringify({url: url})
-    })
-    .then((res) => {
-      console.log(res);     
-      res.json()
-    })
+  return axiod.post(Deno.env.get("DOWNLOAD_URL"), {url: url})
 }
