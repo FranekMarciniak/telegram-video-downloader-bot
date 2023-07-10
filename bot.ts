@@ -15,7 +15,7 @@ bot.on('message::url', async (ctx) => {
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()} ${Date.now()}`));
 
 const getVideoURL = (url: string) => {
-  fetch(Deno.env.get("DOWNLOAD_URL"), {
+  return fetch(Deno.env.get("DOWNLOAD_URL"), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
