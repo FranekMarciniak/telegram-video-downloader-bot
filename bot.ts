@@ -8,9 +8,9 @@ bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 bot.on('message::url', async (ctx) => {
   const links = linkifyJS.find(ctx.message.text).map((link: {href: string}) => link.href)
  
-  await getVideoURL(links[0])
+  const url = await getVideoURL(links[0])
 
-  return ctx.reply(`You sent a url: ${links.join(", ")}`);
+  return ctx.reply(`You sent a url: ${JSON.stringify(url)}`);
 });
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()} ${Date.now()}`));
 
