@@ -22,11 +22,10 @@ const getVideoURL = (url: string) => {
     headers: {
       "Content-Type": "application/json",
       },
-      body: JSON.stringify({url})
+      body: JSON.stringify({url: url})
     })
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
-    }
-  );
+    .then((res) => {
+      console.log(res);     
+      res.json()}
+    )
 }
