@@ -1,5 +1,5 @@
 import { Bot } from "./deps.deno.ts";
-import linkifyJS from "https://cdn.skypack.dev/linkifyjs?dts";
+import * as linkifyJS from "https://cdn.skypack.dev/linkifyjs?dts";
 
 export const bot = new Bot(Deno.env.get("BOT_TOKEN") || "");
 
