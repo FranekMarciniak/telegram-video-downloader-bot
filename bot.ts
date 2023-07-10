@@ -14,7 +14,7 @@ bot.on('message::url', async (ctx) => {
   const url = data?.data?.url
   if(!url) return 
 
-  return ctx.reply(`You sent a url: ${JSON.stringify(url)}`);
+  return await ctx.replyWithVideo(url);
 });
 bot.command("ping", (ctx) => ctx.reply(`Pong! ${new Date()} ${Date.now()}`));
 
