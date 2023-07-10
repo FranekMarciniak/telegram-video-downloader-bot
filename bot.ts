@@ -10,7 +10,7 @@ bot.on('message::url', async (ctx) => {
   const links = linkifyJS.find(ctx.message.text).map((link: {href: string}) => link.href)
  
   const data = await getVideoURL(links[0])
-  const url = data?.url
+  const url = data?.data?.url
   if(!url) return 
 
   return ctx.reply(`You sent a url: ${JSON.stringify(url)}`);
