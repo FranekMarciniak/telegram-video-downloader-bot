@@ -5,12 +5,10 @@ export const bot = new Bot(Deno.env.get("BOT_TOKEN") || "");
 
 bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
 
-bot.on('message::url', (ctx) => {
+bot.on('message::url', async (ctx) => {
   const links = linkifyJS.find(ctx.message.text).map((link: {href: string}) => link.href)
-  const promises = links.map((link: string) => getVideoURL(link));
-  Promise.all(promises).then((data) => {
-    console.log(data);
-  })
+ 
+  await getVideoURL(links[0])
 
   return ctx.reply(`You sent a url: ${links.join(", ")}`);
 });
@@ -26,6 +24,6 @@ const getVideoURL = (url: string) => {
     })
     .then((res) => {
       console.log(res);     
-      res.json()}
-    )
+      res.json()
+    })
 }
